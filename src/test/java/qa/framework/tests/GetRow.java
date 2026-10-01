@@ -64,7 +64,22 @@ public class GetRow {
         submitButton.click();
         Thread.sleep(2000);
 
-        List<WebElement> updatedAccountRow = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[data-testid='account-row']")));
+        List<WebElement> updatedAccountRow = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.cssSelector("[data-testid='account-row-name']")));
+        
+        System.out.println("--- DAFTAR ISI BARIS TABEL (MENGGUNAKAN LOOP) ---");
+        int nomor = 1;
+        for (WebElement row : updatedAccountRow) {
+
+        // Ambil semua teks yang ada di dalam baris tersebut
+        String isiBaris = row.getText(); 
+        System.out.println("Baris ke-" + nomor + ": " + isiBaris);
+        nomor++;
+
+        }
+
+
+        
+        
         int updatedTotalRows = updatedAccountRow.size();
         Assert.assertEquals(totalRows + 1, updatedTotalRows, "Total rows tidak bertambah setelah menambahkan akun baru");
         System.out.println("Total rows after adding new account: " + updatedTotalRows);
